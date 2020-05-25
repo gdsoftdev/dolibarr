@@ -2409,6 +2409,10 @@ abstract class CommonObject
 		$forcedroundingmode=$roundingadjust;
 		if ($forcedroundingmode == 'auto' && isset($conf->global->MAIN_ROUNDOFTOTAL_NOT_TOTALOFROUND)) $forcedroundingmode=$conf->global->MAIN_ROUNDOFTOTAL_NOT_TOTALOFROUND;
 		elseif ($forcedroundingmode == 'auto') $forcedroundingmode='0';
+		
+		//if configuration says total must be rounded, total tva must be calculated at each modification, so we force the mode 
+		if (isset($conf->global->MAIN_ROUNDOFTOTAL_NOT_TOTALOFROUND) && $conf->global->MAIN_ROUNDOFTOTAL_NOT_TOTALOFROUND == '1')
+			$forcedroundingmode = '1';
 
 		$error=0;
 
